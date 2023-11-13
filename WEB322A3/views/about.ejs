@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <%- include('partials/navbar', {page: '/about'}) %>
+  
+    <div class="container mx-auto">
+        <div class="hero bg-base-200 rounded-lg p-6">
+            <div class="hero-content text-center">
+                <div class="max-w-md">
+                    <h1 class="text-5xl font-bold">About</h1>
+                    <p class="py-6">SENECA Programming.</p>
+                </div>
+            </div>
+        </div>
+        <br />
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <img class="w-full rounded-lg" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80" alt="Scene" /> 
+            </div>
+            <div class="prose">
+                <p>My name is WAI SUN LAM. Having pursued a diploma in computer programming in SENECA COLLEGE. First semester I studied IPC144, CPR101, APS145, ULI101. Second semester I studied DBS211, WEB222, SFT221, OOP244. My favorite course is SFT221 The course SFT221, which involves group assignments, seems particularly interesting. Working in a team on coding projects is invaluable, as it not only improves technical skills but also helps in understanding team dynamics, communication, and collaboration. These are crucial aspects of real-world software development.  </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

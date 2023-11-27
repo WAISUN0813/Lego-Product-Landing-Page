@@ -1,14 +1,14 @@
 /********************************************************************************
-*  WEB322 – Assignment 04
+*  WEB322 – Assignment 05
 * 
 *  I declare that this assignment is my own work in accordance with Seneca's
 *  Academic Integrity Policy:
 * 
 *  https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
 * 
-*  Name: WAI SUN LAM Student ID: 146691225 Date: 14/10/2023
+*  Name: WAI SUN LAM Student ID: 146691225 Date: 27/11/2023
 *
-*  Published URL: https://raspberry-hedgehog-ring.cyclic.app
+*  Published URL: https://raspberry-hedgehog-ring.cyclic.app 
 *
 ********************************************************************************/
 
@@ -17,9 +17,9 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const HTTP_PORT = 8080;
-
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
+express.urlencoded({extended:true})
 
 app.get("/", (req, res) => {
     res.render("home");
@@ -58,6 +58,69 @@ app.get("/lego/sets/:setNum", (req, res) => {
   });
 });
 
+
+app.get("/lego/addSet", (req, res) => {
+    legoData.getAllThemes()
+      .then(themeData => {
+        res.render("addSet", { themes: themeData });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  });
+  
+app.post('/lego/addSet', (req, res) => {
+    const setData = req.body;
+    legoData.addSet(setData)
+      .then(() => {
+        res.redirect('/lego/sets');
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).render("500", { message: `I'm sorry, but we have encountered the following error: ${err.message}` });
+      });
+  });
+
+app.get("/lego/editSet/:num", (req, res) => {
+    const setNum = req.params.num;
+    legoData.getSetByNum(setNum)
+      .then(setData => {
+        return legoData.getAllThemes()
+          .then(themeData => {
+            res.render("editSet", { themes: themeData, set: setData });
+          });
+      })
+      .catch(error => {
+        console.error(error);
+        res.status(404).render("404", { message: "Cannot retrieve set" });
+      });
+  });
+
+app.post('/lego/editSet', (req, res) => {
+    const setnum = req.body.set_num;
+    const data = req.body;
+    legoData.editSet(setnum, data)
+      .then(() => {
+        res.redirect('/lego/sets');
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).render("500", { message: `I'm sorry, but we have encountered the following error: ${err.message}` });
+      });
+  });
+  
+app.get("/lego/deleteSet/:num", (req, res) => {
+    const setNum = req.params.num;
+    legoData.deleteSet(setNum)
+      .then(() => {
+        res.redirect('/lego/sets');
+      })
+      .catch(err => {
+        console.error(err); 
+        res.status(500).render("500", { message: `I'm sorry, but we have encountered the following error: ${err.message}` });
+      });
+  });
+  
 app.use((req, res) => {
   res.status(404).render("404", {
       message: "Sorry, we're unable to find what you're looking for.",

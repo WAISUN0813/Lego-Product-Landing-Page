@@ -13,10 +13,10 @@
       <div class="hero bg-base-200 rounded-lg p-6">
         <div class="hero-content text-center">
           <div class="max-w-md">
-            <h1 class="text-5xl font-bold"><%= sets.name %></h1>
+            <h1 class="text-5xl font-bold"><%= set.name %></h1>
             <p class="py-6">
               Below, you will find detailed information about the set: <%=
-              sets.name %>
+              set.name %>
             </p>
           </div>
         </div>
@@ -27,16 +27,16 @@
         <div>
           <img
             class="w-full rounded-lg"
-            src="<%= sets.img_url %>"
+            src="<%= set.img_url %>"
             alt="Image not Available"
           />
         </div>
         <div class="prose">
           <p>
-            <strong>Set Name: </strong><%= sets.name %><br />
-            <strong>Year Released: </strong> <%= sets.year %><br />
-            <strong>Theme: </strong> <%= sets.Theme.name %><br />
-            <strong>Number of Parts: </strong> <%= sets.num_parts %>
+            <strong>Set Name: </strong><%= set.name %><br />
+            <strong>Year Released: </strong> <%= set.year %><br />
+            <strong>Theme: </strong> <%= set.Theme.name %><br />
+            <strong>Number of Parts: </strong> <%= set.num_parts %>
           </p>
           <div id="quote">
             <!-- Fetched quote content and author will be displayed here -->
@@ -52,7 +52,7 @@
           <button>
             <a
               class="btn btn-success"
-              href="/lego/editSet/<%=sets.set_num %>"
+              href="/lego/editSet/<%=set.set_num %>"
              
               >Edit</a
             >

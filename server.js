@@ -12,14 +12,14 @@
 *
 ********************************************************************************/
 
-const legoData = require("./modules/legoSets");
-const express = require('express');
-const path = require('path');
+const express = require("express");
 const app = express();
-const HTTP_PORT = 8080;
-app.use(express.static('public'));
-app.set('view engine', 'ejs');
-express.urlencoded({extended:true})
+app.set("view engine", "ejs");
+const HTTP_PORT = process.env.PORT || 8080;
+const path = require("path");
+const legoData = require("./modules/legoSets");
+app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
     res.render("home");
@@ -28,7 +28,6 @@ app.get("/", (req, res) => {
 app.get("/about", (req, res) => {
     res.render("about");
 });
-
 
 app.get("/lego/sets", (req, res) => {
     if (req.query.theme) {
@@ -120,16 +119,18 @@ app.get("/lego/deleteSet/:num", (req, res) => {
         res.status(500).render("500", { message: `I'm sorry, but we have encountered the following error: ${err.message}` });
       });
   });
-  
-app.use((req, res) => {
-  res.status(404).render("404", {
-      message: "Sorry, we're unable to find what you're looking for.",
-  });
-});
 
-legoData.initialize().then(() => {
-  app.listen(HTTP_PORT, () => console.log(`Server listening on: ${HTTP_PORT}`));
-}).catch(err => {
-  console.error("Unable to start the server:", err);
-});
+  app.use((req, res) => {
+    res.status(404).render("404", {
+        message: "Sorry, we're unable to find what you're looking for.",
+    });
+  });
+  
+  legoData.initialize().then(() => {
+    app.listen(HTTP_PORT, () => console.log(`Server listening on: ${HTTP_PORT}`));
+  }).catch(err => {
+    console.error("Unable to start the server:", err);
+  });
+  
+
 

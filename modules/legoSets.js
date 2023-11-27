@@ -59,13 +59,6 @@ Set.belongsTo(Theme, { foreignKey: "theme_id" });
 
 function initialize() {
   return new Promise(async (resolve, reject) => {
-    // sets = [...setData];
-    // sets.forEach((element) => {
-    //   const found = themeData.find((index) => index.id == element.theme_id);
-    //   let theme = found ? found.name : "";
-    //   element.theme = theme;
-    // });
-    // resolve();
     try {
       await sequelize.sync();
       resolve();

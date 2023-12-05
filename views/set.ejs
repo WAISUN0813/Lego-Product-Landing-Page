@@ -49,14 +49,14 @@
               >Back</a
             >
           </button>
-          <button>
+          <% if(session.user){ %> <button>
             <a
               class="btn btn-success"
               href="/lego/editSet/<%=set.set_num %>"
              
               >Edit</a
             >
-          </button>
+          </button> <% } %>
         </div>
       </div>
     </div>

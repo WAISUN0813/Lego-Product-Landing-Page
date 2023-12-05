@@ -29,8 +29,8 @@ const Set = sequelize.define(
     img_url: Sequelize.STRING,
   },
   {
-    createdAt: false, // disable createdAt
-    updatedAt: false, // disable updatedAt
+    createdAt: false, 
+    updatedAt: false, 
   }
 );
 
@@ -39,14 +39,14 @@ const Theme = sequelize.define(
   {
     id: {
       type: Sequelize.INTEGER,
-      primaryKey: true, // use "project_id" as a primary key
-      autoIncrement: true, // automatically increment the value
+      primaryKey: true, 
+      autoIncrement: true, 
     },
     name: Sequelize.STRING,
   },
   {
-    createdAt: false, // disable createdAt
-    updatedAt: false, // disable updatedAt
+    createdAt: false, 
+    updatedAt: false, 
   }
 );
 
